@@ -29,6 +29,12 @@ class Manga(models.Model):
         help="Difference between the sale price and the purchase cost.",
     )
     ##########lab SIMI
+    ##########lab SIMI
+    ##########lab SIMI
+    ##########lab SIMI
+    ##########lab SIMI
+    ##########lab SIMI
+    ##########lab SIMI
 
     similar_manga_ids = fields.Many2many(
         comodel_name="managatheque.managatheque",
