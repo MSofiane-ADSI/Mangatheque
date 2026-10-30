@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Extend the manga form view -->
+    <record id="adsi_manga_pricing_view_form" model="ir.ui.view">
+        <field name="name">adsi.manga.pricing.view.form</field>
+        <field name="model">managatheque.managatheque</field>
+        <field name="inherit_id" ref="managatheque.view_form_manga"/>
+        <field name="arch" type="xml">
+
+            <!-- Add the smart button -->
+            <xpath expr="//sheet/group" position="before">
+                <div class="oe_button_box" name="button_box">
+                    <button
+                        name="action_view_similar_manga"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-book"
+                    >
+                        <field
+                            name="similar_manga_count"
+                            widget="statinfo"
+                            string="Similar Manga"
+                        />
+                    </button>
+                </div>
+            </xpath>
+
+            <!-- Add pricing fields -->
+            <xpath expr="//field[@name='auteur']" position="after">
+                <field name="purchase_cost"/>
+                <field name="sale_price"/>
+                <field name="margin" readonly="1"/>
+            </xpath>
+
+            <!-- Add the similar manga page -->
+            <xpath expr="//sheet/group" position="after">
+                <notebook>
+                    <page string="Similar Manga">
+                        <group>
+                            <field
+                                name="similar_manga_ids"
+                                widget="many2many_tags"
+                                options="{'no_create': True}"
+                            />
+                        </group>
+                    </page>
+                </notebook>
+            </xpath>
+
+        </field>
+    </record>
+
+    <!-- Extend the manga list view -->
+    <record id="adsi_manga_pricing_view_list" model="ir.ui.view">
+        <field name="name">adsi.manga.pricing.view.list</field>
+        <field name="model">managatheque.managatheque</field>
+        <field name="inherit_id" ref="managatheque.view_tree_manga"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='auteur']" position="after">
+                <field name="purchase_cost"/>
+                <field name="sale_price"/>
+                <field name="margin"/>
+                <field
+                    name="similar_manga_ids"
+                    widget="many2many_tags"
+                    optional="hide"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Pivot view for margin analysis -->
+    <record id="adsi_manga_pricing_view_pivot" model="ir.ui.view">
+        <field name="name">adsi.manga.pricing.view.pivot</field>
+        <field name="model">managatheque.managatheque</field>
+        <field name="arch" type="xml">
+            <pivot string="Manga Margin Analysis">
+                <field name="name" type="row"/>
+                <field name="purchase_cost" type="measure"/>
+                <field name="sale_price" type="measure"/>
+                <field name="margin" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="adsi_manga_pricing_action_analysis"
+            model="ir.actions.act_window">
+        <field name="name">Manga Margin Analysis</field>
+        <field name="res_model">managatheque.managatheque</field>
+        <field name="view_mode">pivot,list,form</field>
+    </record>
+
+    <record id="adsi_manga_pricing_action_analysis_pivot"
+            model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">pivot</field>
+        <field name="view_id" ref="adsi_manga_pricing_view_pivot"/>
+        <field name="act_window_id"
+               ref="adsi_manga_pricing_action_analysis"/>
+    </record>
+
+</odoo>

@@ -6,11 +6,45 @@
         <field name="model">managatheque.managatheque</field>
         <field name="inherit_id" ref="managatheque.view_form_manga"/>
         <field name="arch" type="xml">
+
+            <!-- Add the smart button -->
+            <xpath expr="//sheet/group" position="before">
+                <div class="oe_button_box" name="button_box">
+                    <button
+                        name="action_view_similar_manga"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-book"
+                    >
+                        <field
+                            name="similar_manga_count"
+                            widget="statinfo"
+                            string="Similar Manga"
+                        />
+                    </button>
+                </div>
+            </xpath>
+
+
+            
             <xpath expr="//field[@name='auteur']" position="after">
                 <field name="purchase_cost"/>
                 <field name="sale_price"/>
                 <field name="margin" readonly="1"/>
             </xpath>
+                       <xpath expr="//sheet/group" position="after">
+                <notebook>
+                    <page string="Similarr Manga">
+                        <group>
+                            <field
+                                name="similar_manga_ids"
+                                widget="many2many_tags"
+                                options="{'no_create': False}"
+                            />
+                        </group>
+                    </page>
+                </notebook>
+            </xpath> 
         </field>
     </record>
 
@@ -23,6 +57,11 @@
                 <field name="purchase_cost"/>
                 <field name="sale_price"/>
                 <field name="margin"/>
+                <field
+                    name="similar_manga_ids"
+                    widget="many2many_tags"
+                    optional="hide"
+                />
             </xpath>
         </field>
     </record>
