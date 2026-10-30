@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- Action de rapport -->
+    <record id="action_report_manga" model="ir.actions.report">
+        <field name="name">Fiche Manga</field>
+        <field name="model">managatheque.managatheque</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">managatheque.report_manga_document</field>
+        <!--field name="report_file">managatheque.report_manga_document</field-->
+        <field name="print_report_name">'Manga - %s' % object.name</field>
+        <field name="binding_model_id" ref="model_managatheque_managatheque"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- Template QWeb -->
+    <template id="report_manga_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Fiche Manga</h2>
+                        <div class="row mt-4">
+                            <div class="col-4">
+                                <img t-if="doc.image_couverture"
+                                     t-att-src="'/web/image/managatheque.managatheque/%s/image_couverture' % doc.id"
+                                     style="max-width: 200px; max-height: 200px;"/>
+                            </div>
+                            <div class="col-8">
+                                <table class="table table-sm">
+                                    <tr>
+                                        <th>Titre</th>
+                                        <td><span t-field="doc.name"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Année de parution</th>
+                                        <td><span t-field="doc.annee_parution"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Auteur</th>
+                                        <td><span t-field="doc.auteur"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Note</th>
+                                        <td><span t-field="doc.note_texte"/></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

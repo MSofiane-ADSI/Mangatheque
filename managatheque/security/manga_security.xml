@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- 1. La catégorie -->
+    <record id="module_manga_security" model="ir.module.category">
+        <field name="name">Mangatheque</field>
+        <field name="description">Droits de la mangatheque</field>
+    </record>
+
+    <!-- 2. LE PRIVILÈGE (c'est ce qui manquait !) -->
+    <record id="manga_privilege" model="res.groups.privilege">
+        <field name="name">Mangatheque</field>
+        <field name="category_id" ref="module_manga_security"/>
+    </record>
+
+    <!-- 3. Groupe Utilisateur, lié au privilège -->
+    <record id="manga_group_user" model="res.groups">
+        <field name="name">Utilisateur</field>
+        <field name="privilege_id" ref="manga_privilege"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <!-- 4. Groupe Administrateur -->
+    <record id="manga_group_manager" model="res.groups">
+        <field name="name">Administrateur</field>
+        <field name="privilege_id" ref="manga_privilege"/>
+        <field name="implied_ids" eval="[(4, ref('manga_group_user'))]"/>
+        <field name="user_ids" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+</odoo>

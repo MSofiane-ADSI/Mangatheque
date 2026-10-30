@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <menuitem
+        id="adsi_manga_pricing_menu_analysis"
+        name="Margin Analysis"
+        parent="managatheque.menu_manga"
+        action="adsi_manga_pricing_action_analysis"
+        sequence="20"
+    />
+
+</odoo>

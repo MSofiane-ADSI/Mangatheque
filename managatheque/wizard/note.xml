@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <record id="view_note_wizard_form" model="ir.ui.view">
+        <field name="name">Note Wizard Form</field>
+        <field name="model">managatheque.note.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="manga_id" readonly="1"/>
+                    <field name="note"/>
+                </group>
+                <footer>
+                    <button name="action_valider" type="object"
+                            string="Valider" class="btn-primary"/>
+                    <button special="cancel" string="Annuler" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_note_wizard" model="ir.actions.act_window">
+        <field name="name">Donner une note</field>
+        <field name="res_model">managatheque.note.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'default_manga_id': active_id}</field>
+
+        
+    </record>
+</odoo>

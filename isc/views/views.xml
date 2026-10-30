@@ -1,0 +1,27 @@
+<odoo>
+    <data>
+
+        <record id="isc_form_sale_order" model="ir.ui.view">
+            <field name="name">Formulaire Devis</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="premier_acompte"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="isc_list_sale_order" model="ir.ui.view">
+            <field name="name">Liste Devis</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.sale_order_list_with_dashboard"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="premier_acompte"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>

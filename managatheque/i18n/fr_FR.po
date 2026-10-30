@@ -1,0 +1,183 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* managatheque
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 20.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-22 15:51+0000\n"
+"PO-Revision-Date: 2026-10-22 15:51+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: managatheque
+#: model:ir.module.module,description:base.module_managatheque
+msgid ""
+"\n"
+"cette appliactio vous permet de gérer tous vos mangas.\n"
+msgstr ""
+
+#. module: managatheque
+#: model:ir.actions.report,print_report_name:managatheque.action_report_manga
+msgid "'Manga - %s' % object.name"
+msgstr ""
+
+#. module: managatheque
+#: model:res.groups,name:managatheque.manga_group_manager
+msgid "Administrateur"
+msgstr "Administrateur"
+
+#. module: managatheque
+#: model_terms:ir.ui.view,arch_db:managatheque.view_note_wizard_form
+msgid "Annuler"
+msgstr ""
+
+#. module: managatheque
+#: model:ir.model.fields,field_description:managatheque.field_managatheque_managatheque__annee_parution
+#: model_terms:ir.ui.view,arch_db:managatheque.report_manga_document
+msgid "Année de parution"
+msgstr ""
+
+#. module: managatheque
+#: model:ir.module.module,summary:base.module_managatheque
+msgid "Application de gestion des mangas"
+msgstr ""
+
+#. module: managatheque
+#: model:ir.model.fields,field_description:managatheque.field_managatheque_managatheque__auteur
+#: model_terms:ir.ui.view,arch_db:managatheque.report_manga_document
+msgid "Auteur"
+msgstr ""
+
+#. module: managatheque
+#: model:ir.model.fields,field_description:managatheque.field_managatheque_managatheque__create_uid
+#: model:ir.model.fields,field_description:managatheque.field_managatheque_note_wizard__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: managatheque
+#: model:ir.model.fields,field_description:managatheque.field_managatheque_managatheque__create_date
+#: model:ir.model.fields,field_description:managatheque.field_managatheque_note_wizard__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: managatheque
+#: model:ir.model.fields,field_description:managatheque.field_managatheque_managatheque__display_name
+#: model:ir.model.fields,field_description:managatheque.field_managatheque_note_wizard__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: managatheque
+#: model_terms:ir.ui.view,arch_db:managatheque.view_form_manga
+msgid "Donner note"
+msgstr "Donner note"
+
+#. module: managatheque
+#: model:ir.actions.act_window,name:managatheque.action_note_wizard
+msgid "Donner une note"
+msgstr "Donner une note"
+
+#. module: managatheque
+#: model:ir.module.category,description:managatheque.module_manga_security
+msgid "Droits de la mangatheque"
+msgstr ""
+
+#. module: managatheque
+#: model:ir.actions.report,name:managatheque.action_report_manga
+#: model_terms:ir.ui.view,arch_db:managatheque.report_manga_document
+msgid "Fiche Manga"
+msgstr ""
+
+#. module: managatheque
+#: model:ir.model.fields,field_description:managatheque.field_managatheque_managatheque__id
+#: model:ir.model.fields,field_description:managatheque.field_managatheque_note_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: managatheque
+#: model:ir.model.fields,field_description:managatheque.field_managatheque_managatheque__write_uid
+#: model:ir.model.fields,field_description:managatheque.field_managatheque_note_wizard__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: managatheque
+#: model:ir.model.fields,field_description:managatheque.field_managatheque_managatheque__write_date
+#: model:ir.model.fields,field_description:managatheque.field_managatheque_note_wizard__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: managatheque
+#: model:ir.actions.act_window,name:managatheque.action_manga_list
+#: model:ir.ui.menu,name:managatheque.menu_manga_list
+msgid "Liste des Mangas"
+msgstr "Liste des Mangas"
+
+#. module: managatheque
+#: model:ir.model,name:managatheque.model_managatheque_managatheque
+#: model:ir.model.fields,field_description:managatheque.field_managatheque_note_wizard__manga_id
+msgid "Manga"
+msgstr ""
+
+#. module: managatheque
+#: model:ir.module.category,name:managatheque.module_manga_security
+#: model:res.groups.privilege,name:managatheque.manga_privilege
+msgid "Mangatheque"
+msgstr ""
+
+#. module: managatheque
+#: model:ir.ui.menu,name:managatheque.menu_manga
+msgid "Mangathèque"
+msgstr ""
+
+#. module: managatheque
+#: model:res.groups.privilege,placeholder:managatheque.manga_privilege
+msgid "No"
+msgstr ""
+
+#. module: managatheque
+#: model:ir.model.fields,field_description:managatheque.field_managatheque_managatheque__note
+#: model:ir.model.fields,field_description:managatheque.field_managatheque_note_wizard__note
+#: model_terms:ir.ui.view,arch_db:managatheque.report_manga_document
+msgid "Note"
+msgstr ""
+
+#. module: managatheque
+#: model:ir.model.fields,field_description:managatheque.field_managatheque_managatheque__image_couverture
+msgid "Photo"
+msgstr ""
+
+#. module: managatheque
+#: model:ir.model.fields,field_description:managatheque.field_managatheque_managatheque__note_texte
+msgid "Score"
+msgstr ""
+
+#. module: managatheque
+#: model:ir.model.fields,field_description:managatheque.field_managatheque_managatheque__name
+#: model_terms:ir.ui.view,arch_db:managatheque.report_manga_document
+msgid "Titre"
+msgstr ""
+
+#. module: managatheque
+#: model:res.groups,name:managatheque.manga_group_user
+msgid "Utilisateur"
+msgstr ""
+
+#. module: managatheque
+#: model_terms:ir.ui.view,arch_db:managatheque.view_note_wizard_form
+msgid "Valider"
+msgstr ""
+
+#. module: managatheque
+#: model:ir.model,name:managatheque.model_managatheque_note_wizard
+msgid "Wizard pour donner une note"
+msgstr "Wizard pour donner une note"
+
+#. module: managatheque
+#: model:ir.module.module,shortdesc:base.module_managatheque
+msgid "managatheque"
+msgstr ""
