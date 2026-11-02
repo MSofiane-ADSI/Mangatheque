@@ -39,7 +39,7 @@
                             <field
                                 name="similar_manga_ids"
                                 widget="many2many_tags"
-                                options="{'no_create': False}"
+                                options="{'no_create': True}"
                             />
                         </group>
                     </page>

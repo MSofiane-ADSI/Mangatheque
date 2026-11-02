@@ -1,4 +1,4 @@
-from odoo import api, fields, models, _
+from odoo import api, fields, models, _, Command
 from odoo.exceptions import ValidationError
 from odoo.tools.float_utils import float_compare
 
@@ -28,13 +28,78 @@ class Manga(models.Model):
         digits=(16, 2),
         help="Difference between the sale price and the purchase cost.",
     )
-    ##########lab SIMI
-    ##########lab SIMI
-    ##########lab SIMI
-    ##########lab SIMI
-    ##########lab SIMI
-    ##########lab SIMI
-    ##########lab SIMI
+#######000006
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        mangas = super().create(vals_list)
+
+        if not self.env.context.get("skip_similar_manga_sync"):
+            for manga in mangas:
+                for similar_manga in manga.similar_manga_ids:
+                    if manga not in similar_manga.similar_manga_ids:
+                        similar_manga.with_context(
+                            skip_similar_manga_sync=True
+                        ).write({
+                            "similar_manga_ids": [
+                                Command.link(manga.id),
+                            ],
+                        })
+
+        return mangas
+
+
+    def write(self, vals):
+        if (
+            "similar_manga_ids" not in vals
+            or self.env.context.get("skip_similar_manga_sync")
+        ):
+            return super().write(vals)
+
+        previous_relations = {
+            manga.id: set(manga.similar_manga_ids.ids)
+            for manga in self
+        }
+
+        result = super().write(vals)
+
+        for manga in self:
+            previous_ids = previous_relations[manga.id]
+            current_ids = set(manga.similar_manga_ids.ids)
+
+            added_ids = current_ids - previous_ids
+            removed_ids = previous_ids - current_ids
+
+            # Add the reciprocal relation.
+            for similar_manga in self.browse(added_ids):
+                if similar_manga.id == manga.id:
+                    continue
+
+                if manga not in similar_manga.similar_manga_ids:
+                    similar_manga.with_context(
+                        skip_similar_manga_sync=True
+                    ).write({
+                        "similar_manga_ids": [
+                            Command.link(manga.id),
+                        ],
+                    })
+
+            # Remove the reciprocal relation.
+            for similar_manga in self.browse(removed_ids):
+                if similar_manga.id == manga.id:
+                    continue
+
+                if manga in similar_manga.similar_manga_ids:
+                    similar_manga.with_context(
+                        skip_similar_manga_sync=True
+                    ).write({
+                        "similar_manga_ids": [
+                            Command.unlink(manga.id),
+                        ],
+                    })
+
+        return result
+
 
     similar_manga_ids = fields.Many2many(
         comodel_name="managatheque.managatheque",
@@ -63,9 +128,10 @@ class Manga(models.Model):
             "name": _("Similar Manga"),
             "res_model": "managatheque.managatheque",
             "view_mode": "list,form",
-            "domain": [("id", "in", self.similar_manga_ids.ids)],
+            "domain": [("id", "in", self.similar_manga_ids.ids)], ## filtre condition 
             "context": {
                 "default_similar_manga_ids": [(6, 0, [self.id])],
+                "default_purchase_cost": self.purchase_cost,
             },
         }
 
